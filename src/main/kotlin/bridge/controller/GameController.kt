@@ -14,11 +14,20 @@ class GameController {
 
     private fun progressGame(bridge: List<String>) {
         val game = BridgeGame(bridge)
-        while (!game.isClear()) {
+        var gameContinue = true
+        while (!game.isClear() && gameContinue) {
             val move = validateMove()
-            game.move(move)
+            gameContinue = game.move(move)
             OutputView().printMap(game.get())
+            if (!gameContinue) {
+                gameContinue = retry(game)
+            }
         }
+    }
+
+    private fun retry(game: BridgeGame): Boolean {
+        val retry = validateRetry()
+        return game.retry(retry)
     }
 
     private fun createBridge(): List<String> {
@@ -40,6 +49,16 @@ class GameController {
         while (true) {
             try {
                 return InputView().readMoving()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    private fun validateRetry(): String {
+        while (true) {
+            try {
+                return InputView().readGameCommand()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }

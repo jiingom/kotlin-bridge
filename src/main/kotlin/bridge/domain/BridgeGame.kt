@@ -54,5 +54,13 @@ class BridgeGame(private val bridge: List<String>) {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry(input: String): Boolean {
+        if (input == "R") {
+            level = 0
+            progressBridge = mutableListOf()
+            tryCount++
+            return true
+        }
+        return false
+    }
 }
