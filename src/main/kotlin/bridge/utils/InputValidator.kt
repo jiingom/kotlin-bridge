@@ -20,8 +20,19 @@ class InputValidator {
         return move
     }
 
+    fun validateRetry(move: String): String {
+        require(
+            move == "R" ||
+                    move == "Q"
+        ) {
+            RETRY_ERROR
+        }
+        return move
+    }
+
     companion object {
         const val BRIDGE_SIZE_ERROR = "[ERROR]: 다리의 길이는 3에서 20사이의 정수여야 합니다."
         const val MOVE_ERROR = "[ERROR]: U(위 칸) 혹은 D(아래 칸) 여야 합니다."
+        const val RETRY_ERROR = "[ERROR]: R(재시작) 혹은 Q(종료) 여야 합니다."
     }
 }

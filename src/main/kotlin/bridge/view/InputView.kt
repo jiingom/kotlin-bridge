@@ -28,11 +28,13 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println(INPUT_RETRY_MESSAGE)
+        return InputValidator().validateRetry(Console.readLine())
     }
 
     companion object {
         const val INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
         const val INPUT_MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        const val INPUT_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
     }
 }
