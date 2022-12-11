@@ -4,6 +4,7 @@ import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.domain.BridgeGame
 import bridge.view.InputView
+import bridge.view.OutputView
 
 class GameController {
     fun run() {
@@ -16,6 +17,7 @@ class GameController {
         while (!game.isClear()) {
             val move = validateMove()
             game.move(move)
+            OutputView().printMap(game.get())
         }
     }
 
