@@ -16,13 +16,19 @@ class GameController {
         val game = BridgeGame(bridge)
         var gameContinue = true
         while (!game.isClear() && gameContinue) {
-            val move = validateMove()
-            gameContinue = game.move(move)
-            OutputView().printMap(game.get())
+            gameContinue = move(game)
             if (!gameContinue) {
                 gameContinue = retry(game)
             }
         }
+        OutputView().printResult(game)
+    }
+
+    private fun move(game: BridgeGame): Boolean {
+        val move = validateMove()
+        val gameContinue = game.move(move)
+        OutputView().printMap(game.get())
+        return gameContinue
     }
 
     private fun retry(game: BridgeGame): Boolean {

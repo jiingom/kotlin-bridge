@@ -48,6 +48,10 @@ class BridgeGame(private val bridge: List<String>) {
     fun get(): List<Level> {
         return progressBridge
     }
+
+    fun getTryCount(): Int {
+        return tryCount
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
