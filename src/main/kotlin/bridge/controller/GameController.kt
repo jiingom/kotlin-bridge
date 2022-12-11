@@ -23,4 +23,14 @@ class GameController {
             }
         }
     }
+
+    private fun validateMove(): String {
+        while (true) {
+            try {
+                return InputView().readMoving()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
 }
